@@ -1,0 +1,9 @@
+InternationalBaseline2.csv   ! name of input file
+baseline_data.har   ! name of output file
+5            ! column no for values
+4            ! number of index sets (columns)
+1  use       ! column and name of index set 1
+2  comm      ! column and name of index set 2
+4  reg       ! column and name of index set 3
+3  year      ! column and name of index set 4 
+

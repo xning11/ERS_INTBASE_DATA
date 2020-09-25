@@ -1,0 +1,7 @@
+auxiliary files = baseline_data_mod;
+check-on-read elements = warn; ! Optional: very often needed
+!log file = yes;  ! Optional
+
+File INFILE = baseline_model_regions_2.har; 
+File OUTFILE = baseline_model_regions.har; 
+

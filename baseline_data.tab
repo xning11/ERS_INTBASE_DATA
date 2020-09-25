@@ -1,0 +1,43 @@
+File    INFILE # Input HAR file #;
+        SETS   # Set Mapping file #;
+ (new) OUTFILE # Output HAR file #;
+
+Set
+USE2       read elements from file INFILE header "SET1";
+COMM2      read elements from file INFILE header "SET2";
+REG2       read elements from file INFILE header "SET3";
+YEAR       read elements from file INFILE header "SET4";
+
+USES       read elements from file SETS header "USES";
+COMM       read elements from file SETS header "COM2";
+REG        read elements from file SETS header "REG2";
+
+Mapping (onto) NewMapName1 from USE2 to USES;
+Read (by_elements) NewMapName1 from file SETS header "MNEW";
+Mapping (onto) NewMapName2 from COMM2 to COMM;
+Read (by_elements) NewMapName2 from file SETS header "NH00";
+Mapping (onto) NewMapName3 from REG2 to REG;
+Read (by_elements) NewMapName3 from file SETS header "NH01";
+
+
+Write 
+(set) USES to file outfile header "USES";
+(set) COMM to file outfile header "COMM";
+(set) REG to file outfile header "REG";
+(set) YEAR to file outfile header "YEAR";
+
+Coefficient
+(all,c,USE2)(all,k,COMM2)(all,r,REG2)(all,t,YEAR) InData(c,k,r,t) ;
+Read InData from file INFILE header "CSV";
+
+Coefficient
+(all,c,USES)(all,k,COMM)(all,r,REG)(all,t,YEAR)  
+    Data(c,k,r,t) # international baseline database #;
+Formula
+(all,c,USE2)(all,k,COMM2)(all,r,REG2)(all,t,YEAR)  
+    Data(NewMapName1(c),NewMapName2(k),NewMapName3(r),t) = 
+            InData(c, k, r, t);
+
+Write Data to file OUTFILE header "DATA";
+
+

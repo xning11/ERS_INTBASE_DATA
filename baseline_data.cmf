@@ -1,0 +1,8 @@
+auxiliary files = baseline_data;
+check-on-read elements = warn; ! Optional: very often needed
+!log file = yes;  ! Optional
+
+File INFILE = baseline_data.har; 
+File SETS = setsmaps.har; 
+File OUTFILE = baseline_model_regions.har; 
+

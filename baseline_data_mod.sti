@@ -1,0 +1,20 @@
+
+y           ! based on an old file
+baseline_model_regions.har    ! name of old file
+baseline_model_regions_2.har  ! name of new file
+mw          ! MODIFY data from the old file and WRITE it on the new file
+YEAR        ! header of array to be modified
+m           ! MODIFY the data (before writing it)
+w           ! whole list
+s 	    ! only some characters in the string
+1 1         ! number of the first and last characters to be replaced
+s           ! all strings the same
+y           ! replace prefix X to y in header YEAR
+w 	    ! WRITE (all of) the array to the new file
+n 	    ! don't reuse array in memory
+ex          ! exit saving the new file
+a           ! all remaining (non-deleted) arrays to be copied to new file
+Xin         ! add to history on new file
+Replace header YEAR string prefix X to y
+**end       ! end of history 
+y           ! confirm history before adding

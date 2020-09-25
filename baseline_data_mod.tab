@@ -1,0 +1,29 @@
+File    INFILE # Input HAR file #;
+ (new) OUTFILE # Output HAR file #;
+
+Set
+USES       read elements from file INFILE header "USES";
+COMM       read elements from file INFILE header "COMM";
+REG        read elements from file INFILE header "REG";
+YEAR       read elements from file INFILE header "YEAR";
+
+Write 
+(set) USES to file outfile header "USES";
+(set) COMM to file outfile header "COMM";
+(set) REG to file outfile header "REG";
+(set) YEAR to file outfile header "YEAR";
+
+Coefficient
+(all,c,USES)(all,k,COMM)(all,r,REG)(all,t,YEAR) InData(c,k,r,t) ;
+Read InData from file INFILE header "DATA";
+
+Coefficient
+(all,c,USES)(all,k,COMM)(all,r,REG)(all,t,YEAR)  
+    Data(c,k,r,t) # international baseline database #;
+Formula
+(all,c,USES)(all,k,COMM)(all,r,REG)(all,t,YEAR)  
+    Data(c,k,r,t) = InData(c,k,r,t);
+
+Write Data to file OUTFILE header "DATA";
+
+
